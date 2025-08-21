@@ -35,8 +35,5 @@
 }
 
 ._loaderHidden {
-    opacity: 0;
-    transition: opacity 0.5s ease-out;
-    pointer-events: none;
-    z-index: -1;
+    display: none;
 }

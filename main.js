@@ -22,9 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
         userGender.innerHTML = `<div>Пол: ${userGenderValue}</div>` // сейчас перед загрузкой данных я вижу пустой прямоугольник без данных. Либо перенеси ввобще всю верстку из html в вывод из js. Либо я не должен видеть ничего кроме лоадера, пока не загрузились данные
         userPhoneNumber.innerHTML = `<div>Номер телефона: ${userPhoneNumberValue}</div>`
         userName.innerHTML = `<div>${userFullNameValue}</div>`
-      })
-
-      .then(() => {
-        loader.parentElement.removeChild(loader)
+        loader.classList.add('_loaderHidden')
       })
 })
