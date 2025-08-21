@@ -6,9 +6,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const userPhoneNumber = document.querySelector('.profile__userPhoneNumber');
     const userName = document.querySelector('.profile__userName');
 
-    window.addEventListener('load', () => {
-        loader.classList.add('_loaderHidden') // лоадер должен перестать крутиться, когда загрузится контент с fetch, а не в рандомный load, который тут явно лишний
-    })
 
     fetch(apiUrl)
       .then(response => response.json())
@@ -21,9 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const userNameValue = json.results[0].name
         const userFullNameValue = Object.values(userNameValue).join(' ')
 
-        userGender.innerHTML = `<div>Пол: ${userGenderValue}</div>` // сейчас перед загрузкой данных я вижу пустой прямоугольник без данных. Либо перенеси ввобще всю верстку из html в вывод из js. Либо я не должен видеть ничего кроме лоадера, пока не загрузились данные
         userPicture.innerHTML = `<img src="${userPictureValue}">`
+        userGender.innerHTML = `<div>Пол: ${userGenderValue}</div>` // сейчас перед загрузкой данных я вижу пустой прямоугольник без данных. Либо перенеси ввобще всю верстку из html в вывод из js. Либо я не должен видеть ничего кроме лоадера, пока не загрузились данные
         userPhoneNumber.innerHTML = `<div>Номер телефона: ${userPhoneNumberValue}</div>`
         userName.innerHTML = `<div>${userFullNameValue}</div>`
+      })
+
+      .then(() => {
+        loader.parentElement.removeChild(loader)
       })
 })
